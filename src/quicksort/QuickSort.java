@@ -13,9 +13,6 @@ public class QuickSort {
         medianIndex = length / 2;
         int median = list.get(medianIndex);
 
-//        System.out.println("original: " + list);
-//        System.out.println("median: " + median);
-
         int j = length - 1;
         for (int i = 0; i < medianIndex; ++i) {
             if (list.get(i) > median) {
