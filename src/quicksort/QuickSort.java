@@ -19,7 +19,7 @@ public class QuickSort {
                 while (j > medianIndex && list.get(j) > median) {
                     j--;
                 }
-                if (j > medianIndex && list.get(j) <= median) {
+                if (j > medianIndex) {
                     Collections.swap(list, i, j);
                 }else{
                     Collections.rotate(list.subList(i,medianIndex+1),-1);
