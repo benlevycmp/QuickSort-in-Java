@@ -5,13 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuickSort {
-    static int iterations;
 
     public static void sortInPlace(List<Integer> list) {
-//        iterations++;
-//        if(iterations > 1000){
-//            System.exit(-2);
-//        }
         int medianIndex = ninther(list);
         int length = list.size();
         Collections.swap(list, length / 2, medianIndex);
@@ -44,8 +39,7 @@ public class QuickSort {
             }
             j--;
         }
-//        System.out.println("median index: " + medianIndex);
-//        System.out.println("partial sorted: " + list);
+
         if(list.size() > 3){
             sortInPlace(list.subList(0,medianIndex));
             sortInPlace(list.subList(medianIndex,list.size()));
