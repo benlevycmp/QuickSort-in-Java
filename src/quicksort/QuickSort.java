@@ -1,8 +1,10 @@
 package quicksort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class QuickSort {
 
@@ -41,6 +43,42 @@ public class QuickSort {
             sortInPlace(list.subList(0,medianIndex));
             sortInPlace(list.subList(medianIndex,list.size()));
         }
+    }
+
+    public static List<Integer> copySort(List<Integer> list) {
+        if (list.size()<2){
+            return list;
+        }
+        boolean alternator = true;
+        List<Integer> newList = new ArrayList<>(list.size());
+        newList.addAll(list);
+        var medianIndex = ninther(list);
+        var median = list.get(medianIndex);
+        var j = 0;
+        var k = list.size()-1;
+        for (var i: list){
+            if(i<median){
+                newList.set(j, i);
+                j++;
+            }else if(i>median){
+                newList.set(k, i);
+                k--;
+            }else{
+                if (alternator){
+                    newList.set(j, i);
+                    j++;
+                    alternator = false;
+                }else{
+                    newList.set(k, i);
+                    k--;
+                    alternator = true;
+                }
+            }
+        }
+        if(list.size() > 2){
+            return Stream.concat(copySort(newList.subList(0, j)).stream(), copySort(newList.subList(j, newList.size())).stream()).toList();
+        }
+        return newList;
     }
 
     private static int ninther(List<Integer> list) {
